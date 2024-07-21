@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./mainPage.module.css";
 import Chatting from "../components/Chatting/Chatting";
-
-import Header from "../components/common/Header";
 import Main from "../components/common/Main";
 
 function MainPage() {
@@ -22,7 +20,7 @@ function MainPage() {
           </div>
           <div className={styles.chatBody}>
             {/*여기에 이제 채팅 컴포넌트 들어갈 거임 */}
-            <Chatting />
+            {/* 링크로 이동시키는 방법으로 수정 */}
           </div>
           <button
             className={styles.expandButton}
