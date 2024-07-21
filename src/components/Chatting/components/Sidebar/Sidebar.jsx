@@ -6,6 +6,7 @@ import {
 } from "../../../../recoil/chatting/chattingRecoilState";
 import styles from "./Sidebar.module.css";
 import { useChattingRoomHooks } from "../../../../api/chatting/chattingRoomAPI";
+import { getUserIdInLocalStorage } from "../../../../util/localStorageUtil";
 
 function Sidebar() {
   const roomList = useRecoilValue(chattingRoomListState);
@@ -14,13 +15,13 @@ function Sidebar() {
 
   useEffect(() => {
     // TODO: getChattingRoomList에서 사용자 ID로 대체해야함
-    getChattingRoomList(1);
+    getChattingRoomList();
   }, [getChattingRoomList]);
 
   const handleRoomClick = async (roomId) => {
     setCurrentRoomId(roomId);
     //TODO getChattingList에서 사용자 ID로 대체해야함
-    await getChattingList(roomId, 1); // 여기서 'sungwoo'는 실제 로그인한 사용자 ID로 대체해야 합니다.
+    await getChattingList(roomId, getUserIdInLocalStorage()); // 여기서 'sungwoo'는 실제 로그인한 사용자 ID로 대체해야 합니다.
   };
 
   return (
@@ -34,7 +35,7 @@ function Sidebar() {
                 key={room.room_id}
                 onClick={() => handleRoomClick(room.room_id)}
               >
-                {room.room_id}
+                {room.room_title}
               </li>
             ))}
           </ul>

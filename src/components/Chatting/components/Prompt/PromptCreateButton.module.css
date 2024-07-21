@@ -7,7 +7,7 @@
 }
 
 .promptCreateButton:hover {
-  box-shadow: 0px 0px 10px 0px rgba(241, 89, 42, 0.30);
+  box-shadow: 0px 0px 10px 0px rgba(241, 89, 42, 0.3);
 }
 
 /* .selected {
@@ -28,6 +28,10 @@
   margin: 5px;
 }
 
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .contentContainer {
   display: flex;
   flex-direction: column;
@@ -39,7 +43,7 @@
   font-weight: 700;
   font-size: 20px;
 }
-.age{
+.age {
   font-weight: 600;
   font-size: 16px;
 }
