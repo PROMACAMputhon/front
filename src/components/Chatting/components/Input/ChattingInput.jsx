@@ -1,19 +1,21 @@
 import React, { useRef, useEffect } from "react";
 import styles from "./ChattingInput.module.css";
 import {
+  chooseCharacterState,
   isLoadingState,
+  isFirstState,
   messageState,
 } from "../../../../recoil/chatting/chattingRecoilState";
 import useInput from "../../../../hooks/useInput";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import submitButtonIcon from "../../../../assets/icons/submitButtonIcon.svg";
 import PromptPreview from "../Prompt/PromptPreview";
-import { isFirstState } from "../../../../recoil/chatting/chattingRecoilState";
 
 function ChattingInput() {
   const [isFirst, setIsFirst] = useRecoilState(isFirstState);
   const setMessages = useSetRecoilState(messageState);
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
+  const [chooseCharacter] = useRecoilState(chooseCharacterState);
   const input = useInput("");
   const textareaRef = useRef(null);
 
@@ -24,7 +26,7 @@ function ChattingInput() {
       const response = {
         responseDto: {
           answer:
-            '**프롬프트 엔지니어링: 이해하기 쉬운 설명**\n\n프롬프트 엔지니어링은 컴퓨터에게 올바르고 명확한 지침을 제공하여 최상의 결과를 얻는 기술입니다. 마치 요리사에게 맛있는 요리를 만들기 위한 자세한 레시피를 제공하는 것과 같습니다.\n\n**예시:**\n\n* **나쁜 프롬프트:** "맛있는 피자를 만들어줘."\n* **좋은 프롬프트:** "크러스트가 바삭하고 치즈가 많고 올리브, 페퍼로니, 버섯이 얹힌 12인치 피자를 만들어줘."\n\n프롬프트 엔지니어링을 통해 컴퓨터는 무엇을 해야 하는지 정확히 이해할 수 있습니다. 이를 통해 더 정확하고 관련성 있는 결과를 생성할 수 있습니다.\n\n**장점:**\n\n* **향상된 결과:** 명확한 지침을 제공하여 더 나은 출력을 얻을 수 있습니다.\n* **시간 절약:** 컴퓨터가 명확한 프롬프트를 이해하면 반복적인 작업을 줄일 수 있습니다.\n* **크리에이티비티 향상:** 프롬프트 엔지니어링을 통해 새로운 아이디어를 탐구하고 혁신적인 솔루션을 생성할 수 있습니다.\n\n**단점:**\n\n* **시간 소요:** 좋은 프롬프트를 만드는 데는 시간이 걸릴 수 있습니다.\n* **전문 지식 필요:** 프롬프트 엔지니어링에 대한 특정 분야의 지식이 필요할 수 있습니다.\n* **제한된 범위:** 프롬프트는 컴퓨터가 이해할 수 있는 범위 내에서 작성되어야 합니다.\n\n전반적으로 프롬프트 엔지니어링은 컴퓨터와 효과적으로 소통하고 최상의 결과를 얻기 위한 강력한 도구입니다. 명확하고 구체적인 지침을 제공하여 작업을 간소화하고 창의성을 향상시킬 수 있습니다.',
+            '*김민재는 무심한 표정으로 당신을 바라보며 살짝 미소를 지었다.*\n\n"점심? 뭐, 상록원에서 먹는 게 어때? 거기 학식 괜찮아. *그는 주머니에서 휴대폰을 꺼내 시간을 확인했다.* 그리고 원흥관에 있는 카페에서 커피 한 잔 하는 것도 나쁘지 않을 거야. *그는 잠시 생각에 잠겼다가 덧붙였다.* 그냥 지나가다가 생각난 건데, 너도 고양이 좋아하잖아? 상록원 근처에 고양이 자주 보이더라. 같이 가서 볼래?"\n\n*그는 무심한 듯한 표정을 유지하면서도, 당신이 좋아할 만한 것을 신경 쓰는 모습이 엿보였다.*',
         },
         error: null,
         success: true,
@@ -90,7 +92,11 @@ function ChattingInput() {
 
   return (
     <div className={styles.container}>
-      {isFirst ? <PromptPreview /> : <h3>프롬프트 적용중!</h3>}
+      {isFirst ? (
+        <PromptPreview />
+      ) : (
+        <h3>{chooseCharacter.name} 프롬프트 적용중!</h3>
+      )}
       <form onSubmit={handleSubmit} className={styles.inputContainer}>
         <div className={styles.input}>
           <textarea

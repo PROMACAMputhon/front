@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./PromptPreview.module.css";
 
+
 function PromptPreview() {
+
+
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}></div>
