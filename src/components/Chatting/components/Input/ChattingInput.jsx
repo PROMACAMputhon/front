@@ -1,20 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import styles from "./ChattingInput.module.css";
 import {
-  chooseCharacterState,
   isLoadingState,
-  isFirstState,
   currentRoomIdState,
 } from "../../../../recoil/chatting/chattingRecoilState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import submitButtonIcon from "../../../../assets/icons/submitButtonIcon.svg";
-import PromptPreview from "../Prompt/PromptPreview";
 import { useChatBot } from "../../../../api/chatting/chattingAPI";
 
 function ChattingInput() {
-  const isFirst = useRecoilValue(isFirstState);
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
-  const chooseCharacter = useRecoilValue(chooseCharacterState);
   const currentRoomId = useRecoilValue(currentRoomIdState);
   const [inputValue, setInputValue] = React.useState("");
   const textareaRef = useRef(null);

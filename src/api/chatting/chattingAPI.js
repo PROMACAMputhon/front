@@ -5,6 +5,8 @@ import {
 import { chatBotInstance } from "../aiInstance";
 import { sendRequest } from "../request";
 import { useSetRecoilState } from "recoil";
+import { useChattingRoomHooks } from "./chattingRoomAPI";
+import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
 
 // const generateMockResponse = (question, characterType) => {
 //   const responses = [
@@ -19,6 +21,7 @@ import { useSetRecoilState } from "recoil";
 export const useChatBot = () => {
   const setMessages = useSetRecoilState(messageState);
   const setIsLoading = useSetRecoilState(isLoadingState);
+  const { getChattingRoomList } = useChattingRoomHooks();
   const postChatBot = async (roomId, question) => {
     setIsLoading(true);
     try {
@@ -58,6 +61,8 @@ export const useChatBot = () => {
           createAt: new Date().toISOString(),
         },
       ]);
+
+      getChattingRoomList(getUserIdInLocalStorage());
 
       const response = await sendRequest(chatBotInstance, "post", "/", {
         roomId: roomId,
