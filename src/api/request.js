@@ -28,19 +28,18 @@ export const createUrl = (path, params = {}) => {
   return `${path}${query ? `?${query}` : ""}`;
 };
 
-
-// 인터셉터 적용
-export const applyInterceptors = (instance) => {
-  instance.interceptors.request.use(
-    async (config) => {
-      const token = await getAuthToken();
-      if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-};
+// // 인터셉터 적용
+// export const applyInterceptors = (instance) => {
+//   instance.interceptors.request.use(
+//     async (config) => {
+//       const token = await getAuthToken();
+//       if (token) {
+//         config.headers["Authorization"] = `Bearer ${token}`;
+//       }
+//       return config;
+//     },
+//     (error) => {
+//       return Promise.reject(error);
+//     }
+//   );
+// };

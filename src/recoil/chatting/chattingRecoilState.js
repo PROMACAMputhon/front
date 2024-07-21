@@ -1,5 +1,14 @@
 import { atom } from "recoil";
+import { characters } from "../../assets/const/defaultCharacter";
+export const chattingRoomListState = atom({
+  key: "chattingRoomListState",
+  default: [],
+});
 
+export const currentRoomIdState = atom({
+  key: "currentRoomIdState",
+  default: null,
+});
 export const messageState = atom({
   key: "messageState",
   default: [],
@@ -12,13 +21,7 @@ export const isFirstState = atom({
 
 export const chooseCharacterState = atom({
   key: "chooseCharacterState",
-  default: {
-    name: "유정",
-    ageNGender: "24살, 남자",
-    icon: "akoCharacter",
-    content:
-      "친절한 선배, 매우 잘생겼으며, 처음 보는 사람에게 아주 친절한 사람이다.",
-  },
+  default: characters[0],
 });
 
 export const isLoadingState = atom({

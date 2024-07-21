@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./PromptCreateButton.module.css";
 
-function PromptCreateButton({ icon, ageNGender, name, content, onSelect, selected }) {
+function PromptCreateButton({
+  icon,
+  ageNGender,
+  name,
+  content,
+  onSelect,
+  selected,
+}) {
   return (
     <div
       className={`${styles.container} ${selected ? styles.selected : ""}`}
