@@ -1,14 +1,23 @@
-.header {
+.container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1vw;
   background-color: #ff6600;
   color: white;
 }
 
-.logo {
-  width: 150px;
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoSection {
+  width: 13vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .mainNav ul {
@@ -21,4 +30,23 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.chatHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.chatTitle {
+  margin-right: 7vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.chatExplain {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 3vw;
 }
