@@ -3,17 +3,31 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  gap: 20px;
+  gap: 50px;
   justify-content: center;
   width: 70%;
   align-items: center;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.titleContainer > p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
 .title {
-  background: linear-gradient(to right, #ffdd34, #efa400);
+  background: linear-gradient(to right, var(--orange2), var(--orange1));
   color: transparent;
   -webkit-background-clip: text;
   font-size: 45px;
+  font-weight: 800;
+  margin: 0;
 }
 
 .typeContainer {

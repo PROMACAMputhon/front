@@ -3,7 +3,6 @@ import styles from "./explainPage.module.css";
 import StartChat from "../components/explain/StartChat";
 import CharacterExplain from "../components/explain/CharacterExplain";
 
-
 function ExplainPage() {
     return (
         <div className={styles.container}>

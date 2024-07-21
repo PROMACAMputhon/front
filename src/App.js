@@ -10,7 +10,7 @@ import AuthCheck from "./util/authCheck";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+    <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route

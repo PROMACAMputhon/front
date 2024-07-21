@@ -1,10 +1,22 @@
 .sidebar {
-  width: 250px;
-  height: 100vh;
-  background-color: #f5f5f5;
+  width: 120px;
+  height: 92vh;
+  background-color: #ffffff;
   border-right: 1px solid #e0e0e0;
-  padding: 20px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+.open {
+  width: 400px;
+}
+
+.menu {
+  width: 35px;
+  height: 35px;
 }
 
 .title {
@@ -59,4 +71,72 @@
     border-right: none;
     border-bottom: 1px solid #e0e0e0;
   }
+}
+
+.hiddenContent {
+  display: none;
+}
+
+.visibleContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  overflow-y: auto;
+}
+
+.visibleContent h2 {
+  margin: 0;
+}
+
+.menu {
+  cursor: pointer;
+}
+
+.scrollContainer {
+  height: 80%;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listContainer {
+  list-style-type: none;
+  padding: 0;
+  width: 80%;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listItemBlock {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  align-items: center;
+  padding-left: 10px;
+  margin: 10px auto;
+}
+
+.listItemBlock img {
+  width: 15px;
+}
+
+.listItem {
+  margin: 5px auto;
+  padding: 12px;
+  list-style-type: none;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.logout {
+  position: absolute;
+  bottom: 60px;
 }

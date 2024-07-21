@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   chattingRoomListState,
@@ -7,9 +7,14 @@ import {
 import styles from "./Sidebar.module.css";
 import { useChattingRoomHooks } from "../../../../api/chatting/chattingRoomAPI";
 import { getUserIdInLocalStorage } from "../../../../util/localStorageUtil";
+import menu from "../../../../assets/icons/menu.svg";
+import exit from "../../../../assets/icons/exit.svg";
+import logout from "../../../../assets/icons/logout.svg";
+import chattingRoom from "../../../../assets/icons/chattingRoom.svg";
 
 function Sidebar() {
   const roomList = useRecoilValue(chattingRoomListState);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const { getChattingRoomList, getChattingList } = useChattingRoomHooks();
 
@@ -25,24 +30,37 @@ function Sidebar() {
   };
 
   return (
-    <div className={styles.sidebar}>
-      <h2>채팅 목록</h2>
-      <ul>
-        {roomList.length > 0 ? (
-          <ul>
-            {roomList.map((room) => (
-              <li
-                key={room.room_id}
-                onClick={() => handleRoomClick(room.room_id)}
-              >
-                {room.room_title}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>채팅방이 없습니다.</p>
-        )}
-      </ul>
+    <div className={`${styles.sidebar} ${openSidebar ? styles.open : ""}`}>
+      <img
+        src={openSidebar ? exit : menu}
+        className={styles.menu}
+        alt="menu"
+        onClick={() => setOpenSidebar(!openSidebar)}
+      />
+      <div className={openSidebar ? styles.visibleContent : styles.hiddenContent}>
+        <h2>채팅 목록</h2>
+          {roomList.length > 0 ? (
+            <div className={styles.scrollContainer}>
+            <ul className={styles.listContainer}>
+              {roomList.map((room) => (
+                <div className={styles.listItemBlock}>
+                <img src={chattingRoom} alt="chattingRoom" />
+                <li
+                  key={room.room_id}
+                  onClick={() => handleRoomClick(room.room_id)}
+                  className={styles.listItem}
+                >
+                  {room.room_title}
+                </li>
+                </div>
+              ))}
+            </ul>
+            </div>
+          ) : (
+            <p>채팅방이 없습니다.</p>
+          )}
+      </div>
+      <img src={logout} className={styles.logout} />
     </div>
   );
 }

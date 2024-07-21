@@ -24,6 +24,8 @@ function ChattingMessages() {
     scrollToBottom();
   }, [messages]);
 
+  const characterName = chooseCharacter.name + '(' + chooseCharacter.ageNGender + ')';
+
   return (
     <div className={styles.messagesContainer}>
       {messages.map((message, index) => (
@@ -38,8 +40,11 @@ function ChattingMessages() {
               <div className={styles.promaChattingProfile}>
                 <img src={chooseCharacter.icon} alt="Proma Chatting Profile" />
               </div>
-              <div className={styles.receiveMessageText}>
-                <MarkdownRenderer text={message.answer} />
+              <div className={styles.contentContainer}>
+                <p className={styles.name}>{characterName}</p>
+                <div className={styles.receiveMessageText}>
+                  <MarkdownRenderer text={message.answer} />
+                </div>
               </div>
             </div>
           )}
@@ -50,7 +55,10 @@ function ChattingMessages() {
           <div className={styles.promaChattingProfile}>
             <img src={chooseCharacter.icon} alt="Proma Chatting Profile" />
           </div>
-          <SkeletonMessage />
+          <div className={styles.nameNContent}>
+            <p className={styles.name}>{characterName}</p>
+            <SkeletonMessage />
+          </div>
         </div>
       )}
       <div ref={messagesEndRef} />

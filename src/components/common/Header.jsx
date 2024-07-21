@@ -6,6 +6,8 @@ import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
 import { Link } from "react-router-dom";
 import { useLoginHooks } from "../../api/user/user";
 import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
+import headerLogo from "../../assets/icons/headerLogo.svg";
+import colorLogo from "../../assets/images/colorLogo.jpg";
 
 function Header() {
   const { logout } = useLoginHooks();
@@ -24,12 +26,18 @@ function Header() {
     navigate("/login");
   };
 
+  const Refresh = () => {
+    window.location.reload();
+  };
+
+  const containerClassName = isHomePage ? `${styles.container} ${styles.homePage}` : `${styles.container} ${styles.chatPage}`;
+
   return (
-    <header className={styles.container}>
+    <header className={containerClassName}>
       {isHomePage ? (
         <div className={styles.header}>
           <div className={styles.logoSection}>
-            <Logo width={150} height={50} />
+            <Logo height={40} />
           </div>
           <nav className={styles.mainNav}>
             <ul>
@@ -59,10 +67,12 @@ function Header() {
         <nav className={styles.chatHeader}>
           <div className={styles.logoSection}>
             <Link to={"/"}>
-              <Logo width={150} height={50} />
+              <img src={colorLogo} height={40}/>
             </Link>
           </div>
-          <div className={styles.chatTitle}>동국동락 캐릭톡</div>
+          <div className={styles.chatTitle} onClick={Refresh}>
+            <img src={headerLogo} alt="logo" />
+          </div>
           <div className={styles.chatExplain}>
             <Link to={"/ai/explain"}>소개</Link>
           </div>
