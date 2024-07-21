@@ -4,9 +4,8 @@ import { Bell, Globe, Search, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userState } from "../../recoil/user/userRecoilState";
 import { useLoginHooks } from "../../api/user/user";
+import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
 
 function Header() {
   const { logout } = useLoginHooks();
@@ -15,14 +14,14 @@ function Header() {
   const isHomePage = location.pathname === "/";
 
   const navigate = useNavigate();
-
-  const [user] = useRecoilState(userState);
+  const userId = getUserIdInLocalStorage();
   const handleLoginClick = () => {
-    if (user.isLoggedIn) {
-      logout(user.userData);
-    } else {
-      navigate("/login");
-    }
+    navigate("/login");
+  };
+
+  const handleLogoutClick = () => {
+    logout(userId);
+    navigate("/login");
   };
 
   return (
@@ -44,8 +43,8 @@ function Header() {
             <Bell size={20} />
             <Globe size={20} />
             <User size={20} />
-            {user.isLoggedIn ? (
-              <span className={styles.loginSection} onClick={handleLoginClick}>
+            {userId ? (
+              <span className={styles.loginSection} onClick={handleLogoutClick}>
                 로그아웃
               </span>
             ) : (
