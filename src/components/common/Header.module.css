@@ -1,7 +1,8 @@
 .container {
   display: flex;
+  height: 8vh;
   align-items: center;
-  padding: 1vw;
+  padding: 1vh;
   background-color: #ff6600;
   color: white;
 }
@@ -30,6 +31,10 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.loginSection {
+  cursor: pointer;
 }
 
 .chatHeader {

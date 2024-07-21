@@ -1,0 +1,41 @@
+.container {
+    margin-top: 10vh;
+    margin-bottom: 20vh;
+}
+
+.commentSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.comment {
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27.131px; /* 54.262% */
+    letter-spacing: -0.326px;
+}
+
+.characterSection {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+/* CharacterExplain.module.css */
+.characterSection {
+    opacity: 0; /* 처음에는 숨김 */
+    transform: translateY(20px); /* 약간 아래로 이동 */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+.characterSection.show { /* 화면에 보일 때 */
+    opacity: 1;
+    transform: translateY(0);
+}

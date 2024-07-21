@@ -1,6 +1,6 @@
 .container {
   margin: 0;
-
+  height: 90vh;
 }
 .chatButton {
   position: fixed;
