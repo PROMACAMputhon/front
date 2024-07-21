@@ -7,11 +7,16 @@ import {
   messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { useCallback } from "react";
+import { characters } from "../../assets/const/defaultCharacter";
+import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
 
 export const useChattingRoomHooks = () => {
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
   const setMessages = useSetRecoilState(messageState);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
+
+  const userId = getUserIdInLocalStorage();
+
   const getChattingRoomList = useCallback(
     async (memberId) => {
       try {
@@ -20,7 +25,7 @@ export const useChattingRoomHooks = () => {
           "post",
           "/room/list/",
           {
-            memberId,
+            memberId: userId,
           }
         );
         setChattingRoomList(response.data.responseDto.selectChatting);
@@ -29,8 +34,9 @@ export const useChattingRoomHooks = () => {
         setChattingRoomList([]);
       }
     },
-    [setChattingRoomList]
+    [setChattingRoomList, userId]
   );
+
   const getChattingList = async (roomId, userId) => {
     try {
       const response = await sendRequest(
@@ -50,16 +56,16 @@ export const useChattingRoomHooks = () => {
   };
 
   // TODO - 향후에 MemberId 랑 roomTitle 수정해야함.
-  const createChattingRoom = async (memberId, characterType, roomTitle) => {
+  const createChattingRoom = async (memberId, characterType) => {
     try {
       const response = await sendRequest(chattingInstance, "post", "/save", {
-        memberId: 1,
+        memberId: userId,
         roomType: characterType,
-        roomTitle: "반가워", //이거는 새로운 방 만들때만 주면 돼
+        roomTitle: `${characters[characterType].name}(와)과의 채팅`, //이거는 새로운 방 만들때만 주면 돼
       });
       if (response.data.success) {
         setCurrentRoomId(response.data.responseDto.roomId);
-        getChattingRoomList(1); // 새로운 방 목록을 가져옵니다.
+        // getChattingRoomList(1); // 새로운 방 목록을 가져옵니다.
       }
     } catch (error) {
       console.error("Failed to create chatting room:", error);
