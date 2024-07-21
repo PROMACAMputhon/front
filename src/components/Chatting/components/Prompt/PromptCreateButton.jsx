@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./PromptCreateButton.module.css";
+import { useChattingRoomHooks } from "../../../../api/chatting/chattingRoomAPI";
+import { getUserIdInLocalStorage } from "../../../../util/localStorageUtil";
 
 function PromptCreateButton({
   icon,
@@ -9,10 +11,12 @@ function PromptCreateButton({
   onSelect,
   selected,
 }) {
+  const { createChattingRoom } = useChattingRoomHooks();
+  const userId = getUserIdInLocalStorage();
   return (
     <div
       className={`${styles.container} ${selected ? styles.selected : ""}`}
-      onClick={onSelect}
+      onClick={() => createChattingRoom(userId, onSelect)}
     >
       <div className={styles.promptCreateButton}>
         <img alt="아이콘" src={icon} className={styles.iconContainer} />
