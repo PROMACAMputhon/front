@@ -6,32 +6,36 @@ import {
   currentRoomIdState,
   messageState,
 } from "../../recoil/chatting/chattingRecoilState";
+import { useCallback } from "react";
 
 export const useChattingRoomHooks = () => {
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
   const setMessages = useSetRecoilState(messageState);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
-  const getChattingRoomList = async (memberId) => {
-    try {
-      const response = await sendRequest(
-        chattingInstance,
-        "get",
-        "/room/list",
-        {
-          memberId: 1,
-        }
-      );
-      setChattingRoomList(response.data.responseDto.selectChatting);
-    } catch (error) {
-      console.error("Failed to fetch chatting room list:", error);
-    }
-  };
-
+  const getChattingRoomList = useCallback(
+    async (memberId) => {
+      try {
+        const response = await sendRequest(
+          chattingInstance,
+          "post",
+          "/room/list/",
+          {
+            memberId,
+          }
+        );
+        setChattingRoomList(response.data.responseDto.selectChatting);
+      } catch (error) {
+        console.error("Failed to fetch chatting room list:", error);
+        setChattingRoomList([]);
+      }
+    },
+    [setChattingRoomList]
+  );
   const getChattingList = async (roomId, userId) => {
     try {
       const response = await sendRequest(
         chattingInstance,
-        "get",
+        "post",
         `/list/${roomId}`,
         {
           memberId: userId,
