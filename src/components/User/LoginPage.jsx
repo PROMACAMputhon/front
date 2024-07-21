@@ -1,30 +1,16 @@
 import React, {useState} from 'react';
 import styles from './LoginPage.module.css';
-import {login} from "../../api/user/user";
-import {userState} from "../../recoil/user/userRecoilState";
-import {useSetRecoilState} from "recoil";
-import {useNavigate} from "react-router-dom";
+import {useLoginHooks} from "../../api/user/user";
 import {ReactComponent as TalkImage} from "../../assets/images/talkImage.svg";
 
 function LoginPage() {
+    const {login} = useLoginHooks();
+
     const [memberLoginId, setMemberLoginId] = useState('');
     const [memberPassword, setMemberPassword] = useState('');
 
-    const setUser = useSetRecoilState(userState);
-    const navigate = useNavigate();
-
-    const handleLogin = async () => {
-        const userData = await login(memberLoginId, memberPassword);
-        if (userData) {
-            setUser({
-                isLoggedIn: true,
-                userData: userData.id,
-            });
-            navigate('/');
-            console.log('로그인 성공:', userData);
-        } else {
-            console.log('로그인 실패');
-        }
+    const handleLogin = () => {
+        login(memberLoginId, memberPassword);
     };
 
     return (

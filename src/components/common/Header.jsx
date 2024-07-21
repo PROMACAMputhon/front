@@ -6,25 +6,20 @@ import {ReactComponent as Logo} from "../../assets/icons/logo.svg";
 import {Link} from "react-router-dom";
 import {useRecoilState} from "recoil";
 import {userState} from "../../recoil/user/userRecoilState";
-import {logout} from "../../api/user/user";
+import {useLoginHooks} from "../../api/user/user";
 
 function Header() {
+    const {logout} = useLoginHooks();
+
     const location = useLocation();
     const isHomePage = location.pathname === "/";
 
     const navigate = useNavigate();
 
     const [user, setUser] = useRecoilState(userState);
-    const handleLoginClick = async () => {
+    const handleLoginClick = () => {
         if (user.isLoggedIn) {
-            const data = await logout(user.userData);
-            
-            if (data) {
-                setUser({isLoggedIn: false, userData: null});
-                console.log('로그아웃 성공:', data);
-            } else {
-                console.error("로그아웃 실패333:", data);
-            }
+            logout(user.userData);
         }else {
             navigate("/login");
         }
