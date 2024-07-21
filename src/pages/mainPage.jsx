@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./mainPage.module.css";
 import Chatting from "../components/Chatting/Chatting";
-
-import Header from "../components/common/Header";
 import Main from "../components/common/Main";
 
 function MainPage() {
