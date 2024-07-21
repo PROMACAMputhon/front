@@ -30,7 +30,9 @@ function Header() {
     window.location.reload();
   };
 
-  const containerClassName = isHomePage ? `${styles.container} ${styles.homePage}` : `${styles.container} ${styles.chatPage}`;
+  const containerClassName = isHomePage
+    ? `${styles.container} ${styles.homePage}`
+    : `${styles.container} ${styles.chatPage}`;
 
   return (
     <header className={containerClassName}>
@@ -67,7 +69,7 @@ function Header() {
         <nav className={styles.chatHeader}>
           <div className={styles.logoSection}>
             <Link to={"/"}>
-              <img src={colorLogo} height={40}/>
+              <img alt="로고" src={colorLogo} height={40} />
             </Link>
           </div>
           <div className={styles.chatTitle} onClick={Refresh}>
