@@ -1,0 +1,20 @@
+.leftSidebar {
+    display: flex;
+    width: auto;
+    height: 100%;
+    background-color: #ff6600;
+    padding: 1vw 1vw 1vw 0;
+}
+
+.leftSidebar ul {
+    padding-right: 1vw;
+}
+
+.leftSidebar ul li {
+    font-size: 1.2vw;
+    font-weight: 300;
+    padding: 14px 0;
+    display: block;
+    color: #fff;
+    letter-spacing: 0;
+}
