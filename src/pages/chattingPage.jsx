@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./chattingPage.module.css";
-import { messageState } from "../recoil/chatting/chattingRecoilState";
+import { currentRoomIdState } from "../recoil/chatting/chattingRecoilState";
 import { useRecoilValue } from "recoil";
 import ChattingInput from "../components/Chatting/components/Input/ChattingInput";
 import PreChatting from "../components/Chatting/components/PreChatting";
 import ChattingMessages from "../components/Chatting/components/Messages/ChattingMessages";
+import Sidebar from "../components/Chatting/components/Sidebar/Sidebar";
 
 function ChattingPage() {
-  const messages = useRecoilValue(messageState);
-  const [loadingMessageIndex, setLoadingMessageIndex] = useState(null);
+  const currentRoomId = useRecoilValue(currentRoomIdState);
 
   return (
-    <div className={styles.container}>
-      {messages.length === 0 ? (
-        <PreChatting />
-      ) : (
-        <ChattingMessages
-          loadingMessageIndex={loadingMessageIndex}
-          setLoadingMessageIndex={setLoadingMessageIndex}
-        />
-      )}
-      <ChattingInput />
+    <div className={styles.pageContainer}>
+      <Sidebar />
+      <div className={styles.chatContainer}>
+        {currentRoomId ? (
+          <>
+            <div className={styles.messagesContainer}>
+              <ChattingMessages />
+            </div>
+            <div className={styles.inputContainer}>
+              <ChattingInput />
+            </div>
+          </>
+        ) : (
+          <div className={styles.preChatContainer}>
+            <PreChatting />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

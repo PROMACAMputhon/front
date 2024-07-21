@@ -1,26 +1,19 @@
 import React from "react";
 import styles from "./PreChatting.module.css";
 import PromptCreateButton from "./Prompt/PromptCreateButton";
+import { useChattingRoomHooks } from "../../../api/chatting/chattingRoomAPI";
 import { characters } from "../../../assets/const/defaultCharacter";
-import {
-  chooseCharacterState,
-  isFirstState,
-} from "../../../recoil/chatting/chattingRecoilState";
-import { useSetRecoilState } from "recoil";
 
 function PreChatting() {
-  const setChooseCharacter = useSetRecoilState(chooseCharacterState);
-
-  const setIsFirst = useSetRecoilState(isFirstState);
+  const { createChattingRoom } = useChattingRoomHooks();
 
   const handleCharacterSelect = (character) => {
-    setChooseCharacter(character);
-    setIsFirst(false);
+    createChattingRoom(1, character.type, 1);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>아코 캐릭터를 선택하세요!</div>
+      <div className={styles.title}>Pick Me, 아코즈</div>
       <div className={styles.typeContainer}>
         {characters.map((character, index) => (
           <PromptCreateButton

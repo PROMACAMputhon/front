@@ -4,16 +4,16 @@ import {
   isLoadingState,
   chooseCharacterState,
 } from "../../../../recoil/chatting/chattingRecoilState";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import SkeletonMessage from "./SkeletonMessage";
 import MarkdownRenderer from "./MarkdownRenderer";
 import styles from "./ChattingMessages.module.css";
 
 function ChattingMessages() {
-  const [messages] = useRecoilState(messageState);
-  const [isLoading] = useRecoilState(isLoadingState);
-  const [chooseCharacter] = useRecoilState(chooseCharacterState);
+  const messages = useRecoilValue(messageState);
+  const isLoading = useRecoilValue(isLoadingState);
+  const chooseCharacter = useRecoilValue(chooseCharacterState);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -27,30 +27,32 @@ function ChattingMessages() {
   return (
     <div className={styles.messagesContainer}>
       {messages.map((message, index) => (
-        <div key={index} className="b5">
-          {!message.isBot && (
+        <div key={message.chat_id || index} className="b5">
+          {message.question && (
             <div className={styles.sendMessage}>
-              {message.text && (
-                <div className={styles.message}>{message.text}</div>
-              )}
+              <div className={styles.message}>{message.question}</div>
             </div>
           )}
-          {(message.isBot || index === messages.length - 1) && (
+          {message.answer && (
             <div className={styles.receiveMessage}>
               <div className={styles.promaChattingProfile}>
                 <img src={chooseCharacter.icon} alt="Proma Chatting Profile" />
               </div>
-              {isLoading && index === messages.length - 1 ? (
-                <SkeletonMessage />
-              ) : (
-                <div className={styles.receiveMessageText}>
-                  <MarkdownRenderer text={message.text} />
-                </div>
-              )}
+              <div className={styles.receiveMessageText}>
+                <MarkdownRenderer text={message.answer} />
+              </div>
             </div>
           )}
         </div>
       ))}
+      {isLoading && (
+        <div className={styles.receiveMessage}>
+          <div className={styles.promaChattingProfile}>
+            <img src={chooseCharacter.icon} alt="Proma Chatting Profile" />
+          </div>
+          <SkeletonMessage />
+        </div>
+      )}
       <div ref={messagesEndRef} />
     </div>
   );
