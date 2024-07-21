@@ -1,16 +1,9 @@
 import React from "react";
 import styles from "./PromptCreateButton.module.css";
-import { useSetRecoilState } from "recoil";
-import { isFirstState } from "../../../../recoil/chatting/chattingRecoilState";
 
-function PromptCreateButton({ icon, ageNGender, name, content }) {
-  const setIsFirst = useSetRecoilState(isFirstState);
-
-  function clickPromptButton() {
-    setIsFirst(false);
-  }
+function PromptCreateButton({ icon, ageNGender, name, content, onSelect }) {
   return (
-    <div className={styles.container} onClick={clickPromptButton}>
+    <div className={styles.container} onClick={onSelect}>
       <div className={styles.promptCreateButton}>
         <img alt="아이콘" src={icon} className={styles.iconContainer} />
       </div>

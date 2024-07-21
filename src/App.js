@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/common/Header";
 import MainPage from "./pages/mainPage";
-import Chatting from "./components/Chatting/Chatting";
+import ChattingPage from "./pages/chattingPage";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/ai" element={<Chatting />} />
+        <Route path="/ai" element={<ChattingPage />} />
       </Routes>
     </BrowserRouter>
   );
