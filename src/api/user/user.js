@@ -1,9 +1,9 @@
-import {authInstance} from '../instance';
+import {memberInstance} from '../backEndInstance';
 import {sendRequest} from "../request";
 
 export const login = async (memberLoginId, memberPassword) => {
     try {
-        const response = await sendRequest(authInstance, "post", "/signin", {
+        const response = await sendRequest(memberInstance, "post", "/signin", {
             memberLoginId,
             memberPassword,
         })
@@ -26,8 +26,8 @@ export const login = async (memberLoginId, memberPassword) => {
 
 export const logout = async (memberId) => {
     try{
-        const response = await sendRequest(authInstance, "post", "/signout", {
-            "memberId" : 6,
+        const response = await sendRequest(memberInstance, "post", "/signout", {
+            "memberId" : memberId,
         });
 
         if (response.data.success) {

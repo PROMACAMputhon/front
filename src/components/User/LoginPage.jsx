@@ -18,7 +18,7 @@ function LoginPage() {
         if (userData) {
             setUser({
                 isLoggedIn: true,
-                userData: userData,
+                userData: userData.id,
             });
             navigate('/');
             console.log('로그인 성공:', userData);
