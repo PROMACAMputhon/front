@@ -21,7 +21,7 @@ function MainPage() {
             <button onClick={() => setIsExpanded(false)}>닫기</button>
           </div>
           <div className={styles.chatBody}>
-          {/*여기에 이제 채팅 컴포넌트 들어갈 거임 */}
+            {/*여기에 이제 채팅 컴포넌트 들어갈 거임 */}
             <Chatting />
           </div>
           <button

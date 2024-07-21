@@ -1,0 +1,25 @@
+.container {
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  width: 70%;
+  align-items: center;
+}
+
+.title {
+  background: linear-gradient(to right, #ffdd34, #efa400);
+  color: transparent;
+  -webkit-background-clip: text;
+  font-size: 45px;
+}
+
+.typeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+}
