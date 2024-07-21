@@ -59,11 +59,6 @@ function ChattingInput() {
 
   return (
     <div className={styles.container}>
-      {isFirst ? (
-        <PromptPreview />
-      ) : (
-        <h3>{chooseCharacter.name} 프롬프트 적용중!</h3>
-      )}
       <form onSubmit={handleSubmit} className={styles.inputContainer}>
         <div className={styles.input}>
           <textarea

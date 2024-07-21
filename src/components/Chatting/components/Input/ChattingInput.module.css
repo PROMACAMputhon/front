@@ -3,8 +3,7 @@
   height: auto;
   min-width: 600px;
   margin: 0 auto;
-  position: relative;
-  bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .inputContainer {
@@ -15,7 +14,7 @@
   border-radius: 18px;
   border-radius: 20px;
   background-color: var(--white);
-  box-shadow: 0px 0px 10px 0px rgba(16, 24, 40, 0.20);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20);
   padding: 10px 15px;
 }
 
