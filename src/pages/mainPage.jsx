@@ -1,36 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./mainPage.module.css";
 import Main from "../components/common/Main";
+import { useNavigate } from "react-router-dom";
 
 function MainPage() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
+  function onClickHandler() {
+    navigate("/ai");
+  }
   return (
     <div className={styles.container}>
       <Main />
-      <div className={styles.chatButton} onClick={() => setIsExpanded(true)}>
+      <div className={styles.chatButton} onClick={onClickHandler}>
         ?
       </div>
-      {isExpanded && (
-        <div className={styles.chatWindow}>
-          <div className={styles.chatHeader}>
-            <span>채팅 상담</span>
-            <button onClick={() => setIsExpanded(false)}>닫기</button>
-          </div>
-          <div className={styles.chatBody}>
-            {/*여기에 이제 채팅 컴포넌트 들어갈 거임 */}
-            {/* 링크로 이동시키는 방법으로 수정 */}
-          </div>
-          <button
-            className={styles.expandButton}
-            onClick={() => {
-              /* 모달 열기 로직 */
-            }}
-          >
-            확장
-          </button>
-        </div>
-      )}
     </div>
   );
 }

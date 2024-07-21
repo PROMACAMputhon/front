@@ -4,10 +4,17 @@
 }
 
 .content {
+  height: 100%;
   flex-grow: 1;
+  overflow: hidden;
 }
 
-.mainImage {
-  width: 100%;
+.content img {
   object-fit: cover;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

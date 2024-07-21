@@ -4,6 +4,7 @@ import {
   chooseCharacterState,
   isLoadingState,
   isFirstState,
+  currentRoomIdState,
 } from "../../../../recoil/chatting/chattingRecoilState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import submitButtonIcon from "../../../../assets/icons/submitButtonIcon.svg";
@@ -14,17 +15,17 @@ function ChattingInput() {
   const isFirst = useRecoilValue(isFirstState);
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
   const chooseCharacter = useRecoilValue(chooseCharacterState);
+  const currentRoomId = useRecoilValue(currentRoomIdState);
   const [inputValue, setInputValue] = React.useState("");
   const textareaRef = useRef(null);
   const { postChatBot } = useChatBot();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
     setIsLoading(true);
 
     try {
-      await postChatBot(1, inputValue);
+      await postChatBot(currentRoomId, inputValue);
       setInputValue("");
     } catch (error) {
       console.error("Error sending message:", error);
