@@ -1,12 +1,11 @@
 .pageContainer {
   display: flex;
-  height: 92vh;
-  width: 100vw;
+  height: 94vh;
   overflow: hidden;
+  background-color: #f5f6f9;
 }
 
 .chatContainer {
-  top: 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -17,13 +16,15 @@
   flex-grow: 1;
   display: flex;
   overflow-y: auto;
-  padding: 20px;
-  height: auto;
-  background-color: #F5F6F9;
+  padding-top: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100%;
+  background-color: #f5f6f9;
 }
 
 .inputContainer {
-  background-color: #F5F6F9;
+  background-color: #f5f6f9;
 }
 
 /* 반응형 디자인 */
@@ -34,7 +35,7 @@
 
   .chatContainer {
     height: calc(100vh - 60px); /* 사이드바 높이를 고려 */
-  } 
+  }
 }
 
 /* PreChatting 컴포넌트를 위한 스타일 */

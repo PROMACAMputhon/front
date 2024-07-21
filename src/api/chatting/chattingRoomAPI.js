@@ -3,6 +3,7 @@ import { chattingInstance } from "../backEndInstance";
 import { sendRequest } from "../request";
 import {
   chattingRoomListState,
+  chooseCharacterState,
   currentRoomIdState,
   messageState,
 } from "../../recoil/chatting/chattingRecoilState";
@@ -11,6 +12,7 @@ import { characters } from "../../assets/const/defaultCharacter";
 import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
 
 export const useChattingRoomHooks = () => {
+  const setChooseCharacter = useSetRecoilState(chooseCharacterState);
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
   const setMessages = useSetRecoilState(messageState);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
@@ -58,6 +60,7 @@ export const useChattingRoomHooks = () => {
   // TODO - 향후에 MemberId 랑 roomTitle 수정해야함.
   const createChattingRoom = async (memberId, characterType) => {
     try {
+      setChooseCharacter(characters[characterType]);
       const response = await sendRequest(chattingInstance, "post", "/save", {
         memberId: userId,
         roomType: characterType,
