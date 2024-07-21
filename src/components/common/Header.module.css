@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ff6600;
+  color: white;
+}
+
+.logo {
+  width: 150px;
+}
+
+.mainNav ul {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+}
+
+.rightNav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
