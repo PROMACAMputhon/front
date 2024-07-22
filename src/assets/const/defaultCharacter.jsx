@@ -15,7 +15,7 @@ export const characters = [
   {
     type: 2,
     name: "김하나",
-    ageNGender: "22살, 여자 후배",
+    ageNGender: "20살, 여자 신입생",
     icon: akoProfile2,
     content: "당돌한 후배, 활발하고 당돌한 성격에 모두가 좋아한다.",
   },

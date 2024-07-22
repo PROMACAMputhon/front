@@ -20,6 +20,7 @@ function Sidebar() {
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const { getChattingRoomList, getChattingList } = useChattingRoomHooks();
   const setChooseCharacter = useSetRecoilState(chooseCharacterState);
+
   useEffect(() => {
     // TODO: getChattingRoomList에서 사용자 ID로 대체해야함
     getChattingRoomList();
@@ -32,6 +33,9 @@ function Sidebar() {
     await getChattingList(roomId, getUserIdInLocalStorage()); // 여기서 'sungwoo'는 실제 로그인한 사용자 ID로 대체해야 합니다.
   };
 
+  function handleOnClickGetOutRoom() {
+    setCurrentRoomId(null);
+  }
   return (
     <div className={`${styles.sidebar} ${openSidebar ? styles.open : ""}`}>
       <img
@@ -67,7 +71,12 @@ function Sidebar() {
           <p>채팅방이 없습니다.</p>
         )}
       </div>
-      <img alt="로그아웃" src={logout} className={styles.logout} />
+      <img
+        alt="로그아웃"
+        src={logout}
+        className={styles.logout}
+        onClick={handleOnClickGetOutRoom}
+      />
     </div>
   );
 }
